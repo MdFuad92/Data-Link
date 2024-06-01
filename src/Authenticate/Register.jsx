@@ -1,16 +1,51 @@
+import { update } from "firebase/database";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import useAuth from "../Hook/useAuth";
 
 
 const Register = () => {
+    const {createEmail,update} = useAuth()
+
+    const handleRegister = (e)=>{
+        e.preventDefault()
+        const form = e.target
+        const name = form.name.value
+        const email = form.email.value
+        const password = form.password.value
+        const photo = form.photo.value
+        console.log(name,email,password,photo)
+
+     
+        createEmail(email,password,name,photo)
+        .then((result)=>{
+          console.log(result)
+         
+          update(name,photo)
+          .then((result)=>{
+          console.log(result)
+          window.location.reload()
+      
+         
+           
+          }
+         )
+          .catch()
+         })
+        .catch((error)=>{
+          console.error(error)
+         
+        })
+  }
     return (
         <div className='flex justify-center items-center min-h-screen'>
         <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
           <div className='mb-8 text-center'>
             <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
-            <p className='text-sm text-gray-400'>Welcome to StayVista</p>
+            <p className='text-sm text-gray-400'>Welcome to Data-link</p>
           </div>
           <form
+            onSubmit={handleRegister}
             noValidate=''
             action=''
             className='space-y-6 ng-untouched ng-pristine ng-valid'
@@ -30,15 +65,16 @@ const Register = () => {
                 />
               </div>
               <div>
-                <label htmlFor='image' className='block mb-2 text-sm'>
-                  Select Image:
+                <label htmlFor='photo' className='block mb-2 text-sm'>
+                  Photo url:
                 </label>
                 <input
                   required
-                  type='file'
-                  id='image'
-                  name='image'
-                  accept='image/*'
+                  type='photo'
+                  id='photo'
+                  name='photo'
+                  accept='photo/*'
+                  className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-rose-500 bg-gray-200 text-gray-900'
                 />
               </div>
               <div>
@@ -78,7 +114,7 @@ const Register = () => {
                 type='submit'
                 className='bg-rose-500 w-full rounded-md py-3 text-white'
               >
-                Continue
+            Register
               </button>
             </div>
           </form>

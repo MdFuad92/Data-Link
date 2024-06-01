@@ -1,8 +1,61 @@
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../Hook/useAuth";
 
 
 const Login = () => {
+
+    const {login,google} = useAuth()
+    const loc = useLocation()
+    const navigate = useNavigate()
+    
+
+    const handleLogin = (e)=>{
+        e.preventDefault()
+   
+        const form = e.target
+        const name = form.name.value
+        const email = form.email.value
+        const password = form.password.value
+        console.log(name,email,password)
+
+        login(email,password)
+        .then((result) =>{
+         console.log(result.user)
+          
+  
+        navigate(loc?.state?loc.state:'/' )
+        })
+        .catch((error)=>{
+          console.error(error)
+      
+        
+        })
+
+    }
+
+    const handleGoogle = ()=>{
+      google()
+      .then((result)=>{
+        console.log(result.user)
+             navigate(loc?.state?loc.state:'/' )
+          
+         
+     
+        })
+        .catch((error)=>{
+          console.error(error)
+      
+          
+          
+          
+        })
+      
+    }
+
+
+  
+
     return (
         <div className='flex justify-center items-center min-h-screen'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -13,6 +66,7 @@ const Login = () => {
                     </p>
                 </div>
                 <form
+                    onSubmit={handleLogin}
                     noValidate=''
                     action=''
                     className='space-y-6 ng-untouched ng-pristine ng-valid'
@@ -71,15 +125,15 @@ const Login = () => {
                     </p>
                     <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                 </div>
-                <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
-                    <FcGoogle size={32} />
+                <div onClick={handleGoogle} className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+                    <FcGoogle  size={32} />
 
                     <p>Continue with Google</p>
                 </div>
                 <p className='px-6 text-sm text-center text-gray-400'>
                     Don&apos;t have an account yet?{' '}
                     <Link
-                        to='/signup'
+                        to='/register'
                         className='hover:underline hover:text-rose-500 text-gray-600'
                     >
                         Sign up

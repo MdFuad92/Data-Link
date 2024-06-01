@@ -1,17 +1,29 @@
 import { useEffect, useState } from "react";
 import logo from '../assets/6397599.jpg'
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import useAuth from "../Hook/useAuth";
+import { CiUser } from "react-icons/ci";
 
 const Navbar = () => {
     const [state, setState] = useState(false)
+    const { user, logOut } = useAuth()
+
+    const handlelogOut = () => {
+        logOut()
+            .then()
+            .catch()
+    }
 
     // Replace javascript:void(0) paths with your paths
-    const navigation = [
-        { title: "Features", path: "javascript:void(0)" },
-        { title: "Integrations", path: "javascript:void(0)" },
-        { title: "Customers", path: "javascript:void(0)" },
-        { title: "Pricing", path: "javascript:void(0)" }
-    ]
+    const links = <>
+        <li ><NavLink className={({ isActive }) => isActive ? 'text-[#ff6154]' : 'font-normal'} to='/'><span className="hover:text-[#ff6154] hover:duration-500  ">Home</span></NavLink></li>
+        <li><NavLink className={({ isActive }) => isActive ? 'text-[#ff6154]' : 'font-normal'} to='/products'><span className="hover:text-[#ff6154] hover:duration-500  ">Products</span></NavLink></li>
+
+
+
+
+
+    </>
 
     useEffect(() => {
         document.onclick = (e) => {
@@ -25,7 +37,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between py-5 md:block">
                     <a href="javascript:void(0)">
                         <img
-                            src= {logo}
+                            src={logo}
                             width={120}
                             height={50}
                             alt="Float UI logo"
@@ -51,32 +63,46 @@ const Navbar = () => {
                 </div>
                 <div className={`flex-1 items-center mt-8 md:mt-0 md:flex ${state ? 'block' : 'hidden'} `}>
                     <ul className="justify-center items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
-                        {
-                            navigation.map((item, idx) => {
-                                return (
-                                    <li key={idx} className="text-gray-700 hover:text-[#ff6154]">
-                                        <a href={item.path} className="block">
-                                            {item.title}
-                                        </a>
-                                    </li>
-                                )
-                            })
-                        }
+                        {links}
                     </ul>
                     <div className="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
-                        <Link to={'/login'}>
-                        <button href="javascript:void(0)" className="block text-gray-700 hover:text-[#ff6154]">
-                            Log in
-                        </button>
-                        </Link>
-                      <Link to={'/register'}>
-                      <button href="javascript:void(0)" className="flex items-center justify-center gap-x-1 py-2 px-4 text-[#ff6154] font-medium bg-gray-200 hover:border-[#ff6154] hover:border active:border-[#ff6154] rounded-full md:inline-flex">
-                            Sign up
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
-                                <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
-                            </svg>
-                        </button>
-                      </Link>
+                        {
+                            user ?
+                                <div className="dropdown dropdown-end ">
+                                    <div tabIndex={0} role="button" className="btn  btn-circle avatar  tooltip tooltip-neutral  tooltip-left" data-tip={user.displayName}>
+                                        <div className="w-12 rounded-full">
+                                            <img alt="Tailwind CSS Navbar component" src={user.photoURL || <CiUser />} />
+                                        </div>
+                                    </div>
+                                    <ul tabIndex={0} className="mt-3  p-2 menu menu-sm dropdown-content bg-white rounded-sm w-52 z-50">
+                                        <li className='hover:bg-neutral hover:text-[#ff6154] rounded-lg '><a className='text-sm'><span className='text-lg'>Hi,</span>{user.displayName}!</a></li>
+                                        <li>
+                                            <a className="justify-between">
+                                                Dashboard
+                                                </a>
+                                        </li>
+                                        <li onClick={handlelogOut}><a>Logout</a></li>
+                                    </ul>
+
+                                </div> :
+                                <>
+                                    <Link to={'/login'}>
+                                        <button href="javascript:void(0)" className="block text-gray-700 hover:text-[#ff6154]">
+                                            Log in
+                                        </button>
+                                    </Link>
+                                    <Link to={'/register'}>
+                                        <button href="javascript:void(0)" className="flex items-center justify-center gap-x-1 py-2 px-4 text-[#ff6154] font-medium bg-gray-200 hover:border-[#ff6154] hover:border active:border-[#ff6154] rounded-full md:inline-flex">
+                                            Sign up
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                                                <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </Link>
+                                </>
+                        }
+
+
                     </div>
                 </div>
             </div>
