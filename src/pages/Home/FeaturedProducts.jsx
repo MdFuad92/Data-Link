@@ -6,6 +6,7 @@ import { useState } from "react";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import useAuth from "../../Hook/useAuth";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { debounce } from "lodash";
 
 
 const FeaturedProducts = ({ p, refetch }) => {
@@ -18,23 +19,24 @@ const FeaturedProducts = ({ p, refetch }) => {
     const navigate = useNavigate()
  
 
-    const handleUpvote = async () => {
-
+    const handleUpvote = debounce(async () => {
+       if(user ){
         const res = await axiosPublic.post(`/Products/${_id}/vote`)
-       if(!user){
-        navigate('/login')
-      
-       }
-       else{
-       
         setVotes(res.data.vote)
         setisUpvote(true)
+        refetch()
+
        }
+       else{
+        return navigate('/login')
+       }
+       
+   
       
   
      
       
-    }
+    },1000) 
 
     return (
         <div className="grid grid-cols-1 mt-5 gap-5">
