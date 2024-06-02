@@ -12,14 +12,18 @@ import { debounce } from "lodash";
 const FeaturedProducts = ({ p, refetch }) => {
     const { name, vote, image, tags, timestamp, _id } = p
     const axiosPublic = useAxiosPublic()
+  
     const [votes, setVotes] = useState(vote)
     const [isUpvote, setisUpvote] = useState(false)
     const {user} = useAuth()
     const location = useLocation()
     const navigate = useNavigate()
+
+
+
  
 
-    const handleUpvote = debounce(async () => {
+    const handleUpvote = async () => {
        if(user ){
         const res = await axiosPublic.post(`/Products/${_id}/vote`)
         setVotes(res.data.vote)
@@ -36,7 +40,7 @@ const FeaturedProducts = ({ p, refetch }) => {
   
      
       
-    },1000) 
+    } 
 
     return (
         <div className="grid grid-cols-1 mt-5 gap-5">
@@ -47,6 +51,11 @@ const FeaturedProducts = ({ p, refetch }) => {
                 </div>
                 <div className="flex flex-wrap">
                     <div className="p-4 flex flex-col h-full sm:p-7">
+                        <span className="space-x-7 mb-3">
+                           {tags.map(t=>
+                            <span className="text-gray-400" key={t}>#{t}</span>
+                           )}
+                        </span>
                         <h3 className="text-lg font-bold text-gray-800 dark:text-white">
                             {name}
                         </h3>
@@ -55,7 +64,7 @@ const FeaturedProducts = ({ p, refetch }) => {
                         </p>
                         <div className="mt-5 sm:mt-auto flex justify-between">
                             <p className="text-xs text-gray-500 dark:text-neutral-500">
-                                {timestamp}
+                              Posted on: {new Date(timestamp).toLocaleString()}
                             </p>
                             <div className="flex gap-2 items-center" >
                                 <span>{vote}</span>

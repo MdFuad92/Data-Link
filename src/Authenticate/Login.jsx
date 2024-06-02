@@ -1,6 +1,7 @@
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
+import toast from "react-hot-toast";
 
 
 const Login = () => {
@@ -22,12 +23,14 @@ const Login = () => {
         login(email,password)
         .then((result) =>{
          console.log(result.user)
+         toast.success('login successful')
           
   
         navigate(loc?.state?loc.state:'/' )
         })
         .catch((error)=>{
           console.error(error)
+          toast.error('wrong password or email')
       
         
         })
@@ -39,12 +42,14 @@ const Login = () => {
       .then((result)=>{
         console.log(result.user)
              navigate(loc?.state?loc.state:'/' )
+             toast.success('login successful')
           
          
      
         })
         .catch((error)=>{
           console.error(error)
+          toast.error('wrong password or email')
       
           
           
