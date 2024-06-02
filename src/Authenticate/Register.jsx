@@ -1,11 +1,16 @@
 import { update } from "firebase/database";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
+import toast from "react-hot-toast";
+import useAxiosPublic from "../Hook/useAxiosPublic";
 
 
 const Register = () => {
     const {createEmail,update} = useAuth()
+    const axiosPublic = useAxiosPublic()
+ 
+    const navigate = useNavigate()
 
     const handleRegister = (e)=>{
         e.preventDefault()
@@ -23,17 +28,33 @@ const Register = () => {
          
           update(name,photo)
           .then((result)=>{
-          console.log(result)
-          window.location.reload()
+            const userInfo = {
+              name:name,
+              email:email
+                }
+                axiosPublic.post('/users',userInfo)
+                .then(res=>{
+                 if(res.data.insertedId){
+                  console.log('user added successfully')
+                 
+          
+                 }})
+         
+          
       
          
            
           }
+      
          )
           .catch()
+          navigate('/')
+          toast.success('Registration Successful')
+      
          })
         .catch((error)=>{
           console.error(error)
+          toast.error('Registration Unsuccessful')
          
         })
   }

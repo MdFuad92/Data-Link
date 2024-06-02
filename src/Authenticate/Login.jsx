@@ -2,6 +2,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../Hook/useAxiosPublic";
 
 
 const Login = () => {
@@ -9,6 +10,7 @@ const Login = () => {
     const {login,google} = useAuth()
     const loc = useLocation()
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
     
 
     const handleLogin = (e)=>{
@@ -41,7 +43,17 @@ const Login = () => {
       google()
       .then((result)=>{
         console.log(result.user)
-             navigate(loc?.state?loc.state:'/' )
+        const userInfo = {
+            email : result.user?.email,
+            name: result.user?.displayName
+        }
+          
+             axiosPublic.post('/users',userInfo)
+             .then(res =>{
+                console.log(res.data)
+                navigate(loc?.state?loc.state:'/' )
+             })
+         
              toast.success('login successful')
           
          

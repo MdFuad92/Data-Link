@@ -64,7 +64,10 @@ const Home = () => {
         <div>
             <Banner></Banner>
 
-            <h2>Welcome to Data-link</h2>
+            <div className="bg-slate-100 text-start p-2 mt-10">
+            <h2 className="text-3xl font-mono   ">Welcome to Data-link</h2>
+            <p className="font-mono  text-lg">The place to launch and discover new tech products.Take a tour.</p>
+            </div>
             <div className="flex justify-between mt-20 mb-5" >
                 <h3 className="text-3xl">Top products launching today</h3>
                 <div className="flex gap-4">
@@ -93,7 +96,7 @@ const Home = () => {
             <div>
                 {
                     sortVote.map(t =>
-                        <TrendingProducts key={t._id} t={t}></TrendingProducts>
+                        <TrendingProducts  refetch={refetch} key={t._id} t={t}></TrendingProducts>
                     )
                 }
             </div>

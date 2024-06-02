@@ -6,7 +6,7 @@ import { FaArrowAltCircleUp } from "react-icons/fa";
 import { debounce } from "lodash";
 
 
-const TrendingProducts = ({t}) => {
+const TrendingProducts = ({t,refetch}) => {
 
 
     const { name, vote, image, tags, timestamp, _id } = t
@@ -27,6 +27,7 @@ const TrendingProducts = ({t}) => {
         const res = await axiosPublic.post(`/Products/${_id}/vote`)
         setVotes(res.data.vote)
         setisUpvote(true)
+        refetch()
     
 
        }
@@ -43,9 +44,9 @@ const TrendingProducts = ({t}) => {
     return (
         <div className="grid grid-cols-1 mt-5 gap-5">
 
-        <div className="bg-white border rounded-xl h-52 shadow-sm sm:flex dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+        <div className="bg-white border rounded-xl md:h-52 shadow-sm sm:flex dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
             <div className="flex-shrink-0 relative w-full rounded-t-xl overflow-hidden pt-[40%] sm:rounded-s-xl sm:max-w-60 md:rounded-se-none md:max-w-xs">
-                <img className="size-52 absolute top-0 start-0 object-cover" src={image} alt="Image Description" />
+                <img className="md:size-52 absolute top-0 start-0 object-cover" src={image} alt="Image Description" />
             </div>
             <div className="flex flex-wrap">
                 <div className="p-4 flex flex-col h-full sm:p-7">
