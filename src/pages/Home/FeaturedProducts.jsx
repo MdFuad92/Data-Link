@@ -1,11 +1,12 @@
 import { FaClipboardUser } from "react-icons/fa6";
 
+
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import { FaArrowAltCircleUp, FaArrowCircleUp, FaVoteYea } from "react-icons/fa";
 import { useState } from "react";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import useAuth from "../../Hook/useAuth";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
 
 
@@ -56,9 +57,11 @@ const FeaturedProducts = ({ p, refetch }) => {
                             <span className="text-gray-400" key={t}>#{t}</span>
                            )}
                         </span>
-                        <h3 className="text-lg hover:underline hover:cursor-pointer font-bold text-gray-800 dark:text-white">
+                       <Link to={`/productDetails/${_id}`}>
+                       <h3 className="text-lg hover:underline hover:cursor-pointer font-bold text-gray-800 dark:text-white">
                             {name}
                         </h3>
+                       </Link>
                         <p className="mt-1 text-gray-500 dark:text-neutral-400">
                             Some quick example text to build on the card title and make up the bulk of the cards content.
                         </p>

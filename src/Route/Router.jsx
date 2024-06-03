@@ -21,6 +21,7 @@ import ModeratorRoute from "./ModeratorRoute/ModeratorRoute";
 import ManageCoupons from "../pages/Dashboard/ManageCoupons/ManageCoupons";
 import ProductReviewSection from "../pages/Dashboard/ModeratorSection/ProductReviewSection";
 import ReportedContents from "./ModeratorRoute/ReportedContents";
+import ProductDetails from "../component/ProductDetails";
 
 
 const router = createBrowserRouter([
@@ -44,6 +45,12 @@ const router = createBrowserRouter([
             path:'/register',
             element:<Register></Register>
            },
+           {
+            path:'/productDetails/:id',
+            element:<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
+            loader:({params})=>fetch(`http://localhost:5000/Products/${params.id}`)
+
+           }
         ]
     },
     
