@@ -25,6 +25,19 @@ const ManageUsers = () => {
         })
  
     }
+
+    // moderator button
+    const handleMakeModerator = (user) => {
+      axiosSecure.patch(`/users/moderator/${user._id}`)
+      .then(res =>{
+        console.log(res.data)
+        if(res.data.modifiedCount > 0){
+          refetch()
+          toast.success(`${user.name} is moderator now`)
+        }
+      })
+    }
+
     return (
         <div>
            <div>
@@ -39,7 +52,8 @@ const ManageUsers = () => {
         <th></th>
         <th>Name</th>
         <th>Email</th>
-        <th>Role</th>
+        <th>Make Admin</th>
+        <th>Make Mod</th>
       </tr>
     </thead>
     <tbody>
@@ -54,6 +68,13 @@ const ManageUsers = () => {
             <td>
             {m.role === 'admin' ? "Admin" :
             <button onClick={() => handleMakeAdmin(m)} className="btn bg-[#ff6154] hover:bg-[#ff6154] hover:border-[#ff6154] btn-md">
+            <FaUsers className="text-white text-2xl"></FaUsers>
+            </button>
+             }
+            </td>
+            <td>
+            {m.role === 'moderator' ? "Moderator" :
+            <button onClick={() => handleMakeModerator(m)} className="btn bg-[#ff6154] hover:bg-[#ff6154] hover:border-[#ff6154] btn-md">
             <FaUsers className="text-white text-2xl"></FaUsers>
             </button>
              }

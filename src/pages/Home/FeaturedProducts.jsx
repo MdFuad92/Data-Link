@@ -56,7 +56,7 @@ const FeaturedProducts = ({ p, refetch }) => {
                             <span className="text-gray-400" key={t}>#{t}</span>
                            )}
                         </span>
-                        <h3 className="text-lg font-bold text-gray-800 dark:text-white">
+                        <h3 className="text-lg hover:underline hover:cursor-pointer font-bold text-gray-800 dark:text-white">
                             {name}
                         </h3>
                         <p className="mt-1 text-gray-500 dark:text-neutral-400">

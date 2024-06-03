@@ -9,8 +9,15 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@headlessui/react": "^2.0.4",
+    "@mui/material": "^5.15.19",
     "@tanstack/react-query": "^5.40.0",
     "axios": "^1.7.2",
     "firebase": "^10.12.2",
@@ -20,8 +27,8 @@
     "preline": "^2.3.0",
     "rc-banner-anim": "^2.4.5",
     "rc-tween-one": "^3.0.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.23.1",

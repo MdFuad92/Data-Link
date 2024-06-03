@@ -3,18 +3,21 @@ import { AiOutlineBars } from "react-icons/ai";
 import { BsCloudFog, BsDatabaseDash, BsFillHouseAddFill, BsGraphUp, BsPerson, BsPersonCheck, BsPersonCircle } from "react-icons/bs";
 import { FcSettings } from "react-icons/fc";
 import { GrLogout } from "react-icons/gr";
-import { MdHomeWork, MdProductionQuantityLimits } from "react-icons/md";
+import { MdHomeWork, MdProductionQuantityLimits, MdReport, MdReviews } from "react-icons/md";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
 import logo1 from '../assets/6397599.jpg'
 import { FaPersonRifle, FaProductHunt, FaTencentWeibo } from "react-icons/fa6";
 import { BiSolidCartAdd, BiSolidCoupon } from "react-icons/bi";
+import useAdmin from "../Hook/useAdmin";
+import useModerator from "../Hook/useModerator";
 
 
 const Dashboard = () => {
     const { logOut } = useAuth()
     // TODO: admin get from the database
-    const isAdmin = true;
+    const [isAdmin] = useAdmin()
+    const [isModerator] = useModerator()
     const [isActive, setActive] = useState(false)
     const navigate = useNavigate()
     const handlelogOut = () =>{
@@ -126,9 +129,40 @@ const Dashboard = () => {
                   <span className='mx-4 font-medium'>Manage Coupons</span>
                 </NavLink>
                     
-                    </>:
-                    <>
-
+                    </> :
+                    isModerator?<>
+                         <NavLink
+                  to='/dashboard/productReviewQueue'
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                    }`
+                  }
+                >
+                  <MdReviews className='w-5 h-5' />
+  
+                  <span className='mx-4 font-medium'>Product Review Queue</span>
+                </NavLink>
+  
+                {/* Add product */}
+                <NavLink
+                  to='/dashboard/reportedContents'
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                    }`
+                  }
+                >
+                  <MdReport className='w-5 h-5' />
+  
+                  <span className='mx-4 font-medium'>Reported Contents</span>
+                </NavLink>
+              
+               
+                    </>
+                    
+                    :
+                    <> 
                        {/* my profile */}
                      <NavLink
                   to='/dashboard/myprofile'
@@ -202,7 +236,7 @@ const Dashboard = () => {
           </div>
           
         </div>
-        <div className="" >
+        <div className="flex justify-center" >
             <Outlet></Outlet>
           </div>
       </>
