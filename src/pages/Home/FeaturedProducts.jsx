@@ -8,6 +8,7 @@ import useAxiosPublic from "../../Hook/useAxiosPublic";
 import useAuth from "../../Hook/useAuth";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { debounce } from "lodash";
+import { BsTriangleFill } from "react-icons/bs";
 
 
 const FeaturedProducts = ({ p, refetch }) => {
@@ -71,11 +72,8 @@ const FeaturedProducts = ({ p, refetch }) => {
                             </p>
                             <div className="flex gap-2 items-center" >
                                 <span>{vote}</span>
-                                <button className="flex gap-1 items-center" onClick={handleUpvote}  disabled={isUpvote}>
-                                   
-                                    <FaArrowAltCircleUp    ></FaArrowAltCircleUp>
-                                    Upvote
-                                </button>
+                                <button onClick={handleUpvote} className='btn bg-[#ff5d59] btn-md  rounded-md ' disabled={isUpvote}><BsTriangleFill className='text-lg text-white'></BsTriangleFill> Upvote </button>
+                              
                             </div>
 
                         </div>

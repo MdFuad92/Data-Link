@@ -20,8 +20,9 @@ import AdminRoute from "./AdminRoute/AdminRoute";
 import ModeratorRoute from "./ModeratorRoute/ModeratorRoute";
 import ManageCoupons from "../pages/Dashboard/ManageCoupons/ManageCoupons";
 import ProductReviewSection from "../pages/Dashboard/ModeratorSection/ProductReviewSection";
-import ReportedContents from "./ModeratorRoute/ReportedContents";
+
 import ProductDetails from "../component/ProductDetails";
+import ReportedProducts from "../pages/Dashboard/ModeratorSection/ReportedProducts";
 
 
 const router = createBrowserRouter([
@@ -76,11 +77,11 @@ const router = createBrowserRouter([
             // moderator routes
             {
                 path:'productReviewQueue',
-                element:<ProductReviewSection></ProductReviewSection>
+                element:<ModeratorRoute><ProductReviewSection></ProductReviewSection></ModeratorRoute>
             },
             {
                 path:'reportedContents',
-                element:<ReportedContents></ReportedContents>
+                element:<ModeratorRoute><ReportedProducts></ReportedProducts></ModeratorRoute>
             },
             //  aadmin routes
             {

@@ -61,10 +61,10 @@ const Home = () => {
             <p className="font-mono  text-lg">The place to launch and discover new tech products.Take a tour.</p>
             </div>
             <div className="flex justify-between mt-20 mb-5" >
-                <h3 className="text-3xl">Top products launching today</h3>
+                <h3 className="text-3xl">Featured products launching today</h3>
                 <div className="flex gap-4">
                     <p onClick={() => { handleDescend('timestamp') }} className="hover:text-orange-500 hover:cursor-pointer">Latest Post</p>
-                    <p className="hover:text-orange-500" >All</p>
+                    {/* <p className="hover:text-orange-500" >All</p> */}
                 </div>
             </div>
 
@@ -81,7 +81,7 @@ const Home = () => {
                 <h3 className="text-3xl">Trending products launching today</h3>
                 <div className="flex gap-4">
                     <p onClick={() => { handleVoteSort('vote') }} className="hover:text-orange-500 hover:cursor-pointer">Highest Vote</p>
-                    <p className="hover:text-orange-500" >All</p>
+                    {/* <p className="hover:text-orange-500" >All</p> */}
                 </div>
             </div>
             <hr />

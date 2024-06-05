@@ -76,7 +76,7 @@ const Navbar = () => {
                                     </div>
                                     <ul tabIndex={0} className="mt-3  p-2 menu menu-sm dropdown-content bg-white rounded-sm w-52 z-50">
                                         <li className='hover:bg-neutral hover:text-[#ff6154] rounded-lg '><a className='text-sm'><span className='text-lg'>Hi,</span>{user.displayName}!</a></li>
-                                     <Link to={'/dashboard/myprofile'}>
+                                     <Link to={'/dashboard'}>
                                      <li>
                                             <a className="justify-between">
                                                 Dashboard

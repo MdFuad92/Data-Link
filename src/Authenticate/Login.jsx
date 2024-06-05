@@ -11,6 +11,7 @@ const Login = () => {
     const loc = useLocation()
     const navigate = useNavigate()
     const axiosPublic = useAxiosPublic()
+        const from = location.state?.from?.pathname || "/"
     
 
     const handleLogin = (e)=>{
@@ -26,9 +27,10 @@ const Login = () => {
         .then((result) =>{
          console.log(result.user)
          toast.success('login successful')
-          
+      
+         navigate(from,{replace:true}) 
   
-        navigate(loc?.state?loc.state:'/' )
+   
         })
         .catch((error)=>{
           console.error(error)

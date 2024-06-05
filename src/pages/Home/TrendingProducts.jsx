@@ -4,6 +4,7 @@ import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { FaArrowAltCircleUp } from "react-icons/fa";
 import { debounce } from "lodash";
+import { BsTriangleFill } from "react-icons/bs";
 
 
 const TrendingProducts = ({t,refetch}) => {
@@ -67,11 +68,9 @@ const TrendingProducts = ({t,refetch}) => {
                         </p>
                         <div className="flex gap-2 items-center" >
                             <span>{vote}</span>
-                            <button className="flex gap-1 items-center" onClick={handleUpvote}  disabled={isUpvote}>
+                            <button onClick={handleUpvote} className='btn btn-md bg-[#ff5d59]  rounded-md ' disabled={isUpvote}><BsTriangleFill className='text-lg text-white'></BsTriangleFill> Upvote </button>
                                
-                                <FaArrowAltCircleUp    ></FaArrowAltCircleUp>
-                                Upvote
-                            </button>
+                               
                         </div>
 
                     </div>
