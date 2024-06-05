@@ -59,7 +59,7 @@ const MyProfile = () => {
                     <p></p>
                     <div className="card-actions justify-end">
 
-                        <button onClick={openModal} className={payments.map(p=>p.email ===  user.email? 'btn hidden':"btn btn-error btn-md text-white")}>Subscribe Button</button>
+                        <button onClick={openModal} className={payments?.map(p=>p.status !== "verified" && p.email !== user?.email? 'block btn btn-error btn-md text-white':"btn hidden")}>Subscribe Button</button>
                         <UserPaymentRoute  refetch={refetch} openModal={openModal} isOpen={isOpen} closeModal={closeModal} ></UserPaymentRoute>
                         {payments.map(p =>
                             <div className="" key={p._id}>

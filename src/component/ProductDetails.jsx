@@ -12,9 +12,10 @@ import { Controller, useForm } from "react-hook-form"
 import { MdArrowDropDown, MdStarBorder, } from 'react-icons/md';
 import { BsTriangleFill } from 'react-icons/bs';
 import * as React from 'react';
-import Box from '@mui/material/Box';
+
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import { Box } from '@mui/material';
 
 
 const ProductDetails = () => {
