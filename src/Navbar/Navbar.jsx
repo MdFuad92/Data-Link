@@ -3,10 +3,14 @@ import logo from '../assets/6397599.jpg'
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hook/useAuth";
 import { CiUser } from "react-icons/ci";
+import useAdmin from "../Hook/useAdmin";
+import useModerator from "../Hook/useModerator";
 
 const Navbar = () => {
     const [state, setState] = useState(false)
     const { user, logOut } = useAuth()
+    const [isAdmin] = useAdmin()
+    const [isModerator] = useModerator()
 
     const handlelogOut = () => {
         logOut()
@@ -76,13 +80,30 @@ const Navbar = () => {
                                     </div>
                                     <ul tabIndex={0} className="mt-3  p-2 menu menu-sm dropdown-content bg-white rounded-sm w-52 z-50">
                                         <li className='hover:bg-neutral hover:text-[#ff6154] rounded-lg '><a className='text-sm'><span className='text-lg'>Hi,</span>{user.displayName}!</a></li>
-                                     <Link to={'/dashboard'}>
-                                     <li>
-                                            <a className="justify-between">
-                                                Dashboard
+                                        {user &&  isAdmin && <li>
+                                            <Link to={'/dashboard/statistics'}>
+                                                <a className="justify-between">
+                                                    Dashboard
                                                 </a>
-                                        </li>
-                                     </Link>
+
+                                            </Link>
+                                        </li>}
+                                        {user &&  isModerator && <li>
+                                            <Link to={'/dashboard/productReviewQueue'}>
+                                                <a className="justify-between">
+                                                    Dashboard
+                                                </a>
+
+                                            </Link>
+                                        </li>}
+                                        {user && !isModerator && !isAdmin && <li>
+                                            <Link to={'/dashboard/myprofile'}>
+                                                <a className="justify-between">
+                                                    Dashboard
+                                                </a>
+
+                                            </Link>
+                                        </li>}
                                         <li onClick={handlelogOut}><a>Logout</a></li>
                                     </ul>
 

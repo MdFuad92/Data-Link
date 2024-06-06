@@ -19,10 +19,12 @@ import Statistics from "../pages/Dashboard/Statistics/Statistics";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import ModeratorRoute from "./ModeratorRoute/ModeratorRoute";
 import ManageCoupons from "../pages/Dashboard/ManageCoupons/ManageCoupons";
-import ProductReviewSection from "../pages/Dashboard/ModeratorSection/ProductReviewSection";
+
 
 import ProductDetails from "../component/ProductDetails";
 import ReportedProducts from "../pages/Dashboard/ModeratorSection/ReportedProducts";
+import UpdateProducts from "../pages/Dashboard/UpdateProducts/UpdateProducts";
+import ProductReviewQueue from "../pages/Dashboard/ModeratorSection/ProductReviewQueue";
 
 
 const router = createBrowserRouter([
@@ -73,11 +75,18 @@ const router = createBrowserRouter([
                 path:'myproduct',
                 element:<MyProduct></MyProduct>
             },
+            {
+                path:'updateProducts/:id',
+                element:<UpdateProducts></UpdateProducts>,
+                loader:({params})=>fetch(`http://localhost:5000/userproduct/${params.id}`)
+            },
 
             // moderator routes
             {
                 path:'productReviewQueue',
-                element:<ModeratorRoute><ProductReviewSection></ProductReviewSection></ModeratorRoute>
+                element:<ModeratorRoute><ProductReviewQueue></ProductReviewQueue></ModeratorRoute>,
+                loader:({params})=>fetch(`http://localhost:5000/ManageUser/${params.id}`)
+               
             },
             {
                 path:'reportedContents',

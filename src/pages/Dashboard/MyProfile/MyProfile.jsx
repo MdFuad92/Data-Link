@@ -38,14 +38,20 @@ const MyProfile = () => {
         setIsOpen(false);
         document.body.classList.remove("modal-open");
     };
+     
 
-    const { data: payments = [], refetch } = useQuery({
+
+    const { data: payments = {} ,isPending, refetch } = useQuery({
         queryKey: ['payments', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`payments/${user?.email}`)
             return res.data
         }
     })
+    const {name,email, status,price} = payments
+    if(isPending){
+       return <span className="loading loading-spinner loading-xs"></span>
+    }
 
     return (
         <div>
@@ -59,18 +65,18 @@ const MyProfile = () => {
                     <p></p>
                     <div className="card-actions justify-end">
 
-                        <button onClick={openModal} className={payments?.map(p=>p.status !== "verified" && p.email !== user?.email? 'block btn btn-error btn-md text-white':"btn hidden")}>Subscribe Button</button>
-                        <UserPaymentRoute  refetch={refetch} openModal={openModal} isOpen={isOpen} closeModal={closeModal} ></UserPaymentRoute>
-                        {payments.map(p =>
-                            <div className="" key={p._id}>
+                        <button onClick={openModal} className={status !== "verified" ? 'btn btn-error text-white': "btn hidden"}>Subscribe Button</button>
+                        <UserPaymentRoute  refetch={refetch}  isOpen={isOpen} closeModal={closeModal} ></UserPaymentRoute>
+                  
+                            <div className="" >
 
-                                <button  className={p.email === user.email? "btn btn-xs mr-3" : ' btn btn-xs hidden '}>
-                                    {p.status}
+                                <button  className={email === user.email? "btn btn-xs mr-3" : ' btn btn-xs hidden '}>
+                                    {status}
                                 </button>
 
-                                <button className={p.email === user.email? "btn btn-xs mr-3" : ' btn btn-xs hidden '}>Paid: {p.price}$</button>
+                                <button className={email === user.email? "btn btn-xs mr-3" : ' btn btn-xs hidden '}>Paid: {price}$</button>
 
-                            </div>)}
+                            </div>
 
 
                     </div>
