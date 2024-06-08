@@ -65,7 +65,7 @@ const AddProduct = () => {
     return (
         <div>
 
-            <div className='ml-40 mt-10'>
+            <div className='md:ml-40 mt-10'>
                 <h1 className='text-lg font-semibold text'>Add post</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -99,7 +99,7 @@ const AddProduct = () => {
                         </label>
                     </div>
 
-                    <div className='flex gap-6'>
+                    <div className='flex md:flex-row  flex-col gap-6'>
                         <label className="form-control w-full max-w-xs">
                             <div className="label">
                                 <span className="label-text">OwnerName</span>
@@ -124,8 +124,8 @@ const AddProduct = () => {
                
                     </div>
                     {/* rating */}
-                    <div className='flex gap-6'>
-                        <label className="form-contro max-w-xs ">
+                    <div className='flex md:flex-row  flex-col md:gap-6'>
+                        <label className="form-control max-w-xs ">
                             <div className="label">
                                 <span className="label-text">Tags</span>
                                 
@@ -149,10 +149,10 @@ const AddProduct = () => {
                             </div>
 
                         </label>
-                        <label className="form-control w-full max-w-xs ">
+                        <label className="form-control md:w-full md:max-w-xs ">
                             <div className="label">
                                 <span className="label-text">link</span>
-                                <input type="url" {...register("link")}  placeholder="external-link" className="input input-bordered w-full max-w-xs"  />
+                                <input type="url" {...register("link")}  placeholder="external-link" className="input input-bordered md:w-full max-w-xs"  />
                             </div>
 
                           

@@ -50,58 +50,40 @@ const Banner = () => {
         ></div>
         <SwiperSlide>
           <div className="title" data-swiper-parallax="-300">
-            Slide 1
+          Data-link
           </div>
           <div className="subtitle" data-swiper-parallax="-200">
-            Subtitle
+          Explore Cutting-Edge Products
           </div>
           <div className="text" data-swiper-parallax="-100">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-              dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-              laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-              Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-              Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-              ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-              tincidunt ut libero. Aenean feugiat non eros quis feugiat.
+            Stay ahead of the curve with the newest and most innovative products in tech. Our curated list features the latest apps, gadgets, and tools designed to enhance your daily life.
             </p>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="title" data-swiper-parallax="-300">
-            Slide 2
+          Data-link
           </div>
           <div className="subtitle" data-swiper-parallax="-200">
-            Subtitle
+          Meet the Creators
           </div>
           <div className="text" data-swiper-parallax="-100">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-              dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-              laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-              Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-              Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-              ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-              tincidunt ut libero. Aenean feugiat non eros quis feugiat.
+            Get to know the minds behind the products you love. Connect with founders and developers, learn about their journeys, and be inspired by their stories and insights.
             </p>
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <div className="title" data-swiper-parallax="-300">
-            Slide 3
+            Data-link
           </div>
           <div className="subtitle" data-swiper-parallax="-200">
-            Subtitle
+          Join a Community of Innovators
           </div>
           <div className="text" data-swiper-parallax="-100">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-              dictum mattis velit, sit amet faucibus felis iaculis nec. Nulla
-              laoreet justo vitae porttitor porttitor. Suspendisse in sem justo.
-              Integer laoreet magna nec elit suscipit, ac laoreet nibh euismod.
-              Aliquam hendrerit lorem at elit facilisis rutrum. Ut at
-              ullamcorper velit. Nulla ligula nisi, imperdiet ut lacinia nec,
-              tincidunt ut libero. Aenean feugiat non eros quis feugiat.
+            Engage with a vibrant community of tech enthusiasts, early adopters, and thought leaders. Share your feedback, support groundbreaking projects, and help shape the future of technology.
             </p>
           </div>
         </SwiperSlide>
