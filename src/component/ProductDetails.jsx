@@ -95,7 +95,7 @@ const ProductDetails = () => {
 
     return (
         <div className='border h-full border-gray-300 '>
-            <div className=' p-5 flex justify-evenly items-center '>
+            <div className=' p-5 md:flex md:flex-row flex-col justify-evenly items-center '>
                 <div >
                     <div className='mb-9'>
                         <img className='btn btn-circle' src={image} alt="" />
@@ -103,7 +103,7 @@ const ProductDetails = () => {
 
                         <p className='mt-3'>Posted on: {new Date(timestamp).toLocaleString()}</p>
                     </div>
-                    <p className='text-sm text-gray-400'>{description}</p>
+                    <p className='text-sm text-gray-400 md:w-[550px]'>{description}</p>
                     <div className='space-x-4'>
                         {tags.map(t =>
                             <span className="text-gray-400" key={t}>#{t}</span>
@@ -112,9 +112,9 @@ const ProductDetails = () => {
                     </div>
                 </div>
 
-                <div className='flex gap-3 items-center'>
+                <div className='flex  gap-3 items-center md:mt-0 mt-5'>
                     <div className="dropdown mr-3">
-                        <div tabIndex={0} role="button" className="btn m-1"><MdArrowDropDown className='text-lg'> </MdArrowDropDown> Visit Link</div>
+                        <div tabIndex={0} role="button" className="btn m-1"><MdArrowDropDown className='md:text-lg'> </MdArrowDropDown> Visit Link</div>
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                             <li> <a href={link}>{name}</a> </li>
 
@@ -129,7 +129,7 @@ const ProductDetails = () => {
 
           {/* review form */}
          
-            <div className='ml-40 mt-10'>
+            <div className='md:ml-40 mt-10'>
             <h1 className='text-lg font-semibold text'>Give your feedback</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -183,7 +183,7 @@ const ProductDetails = () => {
                     </div>
                     {/* description */}
                     <div>
-                        <label className="form-control w-4/5">
+                        <label className="form-control md:w-4/5">
                             <div className="label">
                                 <span className="label-text">Give us a feedback</span>
 
@@ -199,7 +199,7 @@ const ProductDetails = () => {
             </div>
                {/* user reviews */}
            
-               <div className='border  p-6 mb-3 max-w-screen-md ml-40' >
+               <div className='border  p-6 mb-3 max-w-screen-md md:ml-40' >
                 <h1 className='text-xl mb-5'>Customer Reviews</h1>
                {
                 review.map(r=>

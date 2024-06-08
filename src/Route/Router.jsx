@@ -85,7 +85,8 @@ const router = createBrowserRouter([
             {
                 path:'productReviewQueue',
                 element:<ModeratorRoute><ProductReviewQueue></ProductReviewQueue></ModeratorRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/ManageUser/${params.id}`)
+       
+             
                
             },
             {
@@ -95,15 +96,15 @@ const router = createBrowserRouter([
             //  aadmin routes
             {
                 path:'manageusers',
-                element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+                element:<PrivateRoute><AdminRoute><ManageUsers></ManageUsers></AdminRoute></PrivateRoute>
             },
             {
                 path:'statistics',
-                element:<AdminRoute><Statistics></Statistics></AdminRoute>
+                element:<PrivateRoute><AdminRoute><Statistics></Statistics></AdminRoute></PrivateRoute>
             },
             {
                 path:'manageCoupons',
-                element:<AdminRoute><ManageCoupons></ManageCoupons></AdminRoute>
+                element:<PrivateRoute><AdminRoute><ManageCoupons></ManageCoupons></AdminRoute></PrivateRoute>
 
             }
         ]

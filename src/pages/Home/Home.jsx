@@ -5,6 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import TrendingProducts from "./TrendingProducts";
 import useProducts from "../../Hook/useProducts";
+import { Link } from "react-router-dom";
+import HeaderText from "./HeaderText";
 
 
 const Home = () => {
@@ -54,7 +56,10 @@ const Home = () => {
 
     return (
         <div>
-            <Banner></Banner>
+        <div >
+ 
+        <Banner className='mb-10'></Banner>
+        </div>
 
             <div className="bg-slate-100 text-start p-2 mt-10">
             <h2 className="text-3xl font-mono   ">Welcome to Data-link</h2>
@@ -71,8 +76,8 @@ const Home = () => {
             <hr />
             <div>
                 {
-                    sortProduct.map(p =>
-                        <FeaturedProducts refetch={refetch} key={p._id} p={p}></FeaturedProducts>
+                    sortProduct.map(p => p.featured === 'featured' && p.status === 'accepted'? 
+                        <FeaturedProducts refetch={refetch} key={p._id} p={p}></FeaturedProducts>:''
                     )
                 }
             </div>
@@ -87,16 +92,18 @@ const Home = () => {
             <hr />
             <div>
                 {
-                    sortVote.map(t =>
-                        <TrendingProducts  refetch={refetch} key={t._id} t={t}></TrendingProducts>
+                    sortVote.map(t => t.status === 'accepted'?
+                        <TrendingProducts  refetch={refetch} key={t._id} t={t}></TrendingProducts>:''
                     )
                 }
             </div>
             {/* button */}
             <div className="text-center mt-5">
-                <button className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+              <Link to={'/products'}>
+              <button  className="px-6 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
                     Show All
                 </button>
+                </Link>
             </div>
 
 
