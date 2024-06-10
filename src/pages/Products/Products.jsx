@@ -11,9 +11,11 @@ import useProducts from '../../Hook/useProducts';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 import { useEffect, useState } from 'react';
-import { Await } from 'react-router-dom';
+import { Await, useNavigate } from 'react-router-dom';
 import { result } from 'lodash';
 import PageviewIcon from '@mui/icons-material/Pageview';
+import { BsTriangleFill } from 'react-icons/bs';
+import useAuth from '../../Hook/useAuth';
 
 
 
@@ -26,7 +28,7 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6)
   const [filter, setFilter] = useState("");
-  
+
   // const [tags, setTags] = useState('')
 
   // const [click, setisClicked] = useState(false)
@@ -41,7 +43,7 @@ const Products = () => {
     AOS.init();
   }, [])
 
-  
+
 
 
 
@@ -59,9 +61,9 @@ const Products = () => {
     ).then((res) => {
       setJobs(res.data)
     });
-  }, [axiosPublic,currentPage, itemsPerPage,filter]);
+  }, [axiosPublic, currentPage, itemsPerPage, filter]);
 
- useEffect(() => {
+  useEffect(() => {
     axiosPublic.get('/count').then((res) =>
       setCount(res.data.count)
     );
@@ -79,14 +81,43 @@ const Products = () => {
   };
 
 
+  const [votes, setVotes] = useState(0)
+  const [isUpvote, setisUpvote] = useState(false)
+  const { user } = useAuth()
+
+  const navigate = useNavigate()
+
+
+
+
+
+  const handleUpvote = async (id) => {
+    if (user) {
+      const res = await axiosPublic.post(`/Products/${id}/vote`)
+      setVotes(res.data.vote)
+      setisUpvote(true)
+   
+
+    }
+    else {
+      return navigate('/login')
+    }
+
+
+
+
+
+
+  }
+
 
 
 
   return (
     <div>
-      
-       {/* pagination */}
-       <div className="flex justify-center mt-12">
+
+      {/* pagination */}
+      <div className="flex justify-center mt-12">
         <button
           disabled={currentPage === 1}
           onClick={() => handlePaginationBtn(currentPage - 1)}
@@ -118,9 +149,8 @@ const Products = () => {
           <button
             onClick={() => handlePaginationBtn(btnNum)}
             key={btnNum}
-            className={`hidden px-4 py-2 ${
-              currentPage === btnNum ? "bg-blue-500 text-white" : ""
-            } mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-blue-500  hover:text-white`}
+            className={`hidden px-4 py-2 ${currentPage === btnNum ? "bg-blue-500 text-white" : ""
+              } mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-blue-500  hover:text-white`}
           >
             {btnNum}
           </button>
@@ -151,55 +181,66 @@ const Products = () => {
           </div>
         </button>
       </div>
-         
-      
 
-        
-        <div className='text-start mb-10'>
-       <form onSubmit={handleSearch} >
 
-       <input name='search' className='input input-bordered mr-3' placeholder='Search'  type="text" />
-       <Button  variant='contained' type='submit' ><PageviewIcon></PageviewIcon></Button>
-       
-       </form>
-        </div>
-        <div className='mb-10'>
-          <h1 className='text-2xl'>Check Out Amazing products posted </h1>
-        </div>
-     
+
+
+      <div className='text-start mb-10'>
+        <form onSubmit={handleSearch} >
+
+          <input name='search' className='input input-bordered mr-3' placeholder='Search' type="text" />
+          <Button variant='contained' type='submit' ><PageviewIcon></PageviewIcon></Button>
+
+        </form>
+      </div>
+      <div className='mb-10'>
+        <h1 className='text-2xl'>Check Out Amazing products posted </h1>
+      </div>
+
       <div className='md:grid grid-cols-3 gap-5' data-aos="fade-up" data-aos-duration='1000'>
         {
 
 
 
-     
 
-            jobs?.map(a => a.status === 'accepted' ?
-              <div key={a._id} className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                <div className="p-4 md:p-5">
-                  <img className='btn btn-circle' src={a.image} alt="" />
-                  <h3 className="text-lg font-bold text-gray-800 dark:text-white">
-                    {a.name}
-                  </h3>
+
+          jobs?.map(a => a.status === 'accepted' ?
+            <div key={a._id} className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+              <div className="p-4 md:p-5">
+                <img className='btn btn-circle' src={a.image} alt="" />
+                <h3 className="text-lg font-bold text-gray-800 dark:text-white">
+                  {a.name}
+                </h3>
+                <div>
                   <p className="mt-2 text-gray-500 dark:text-neutral-400">
                     {a.description}
                   </p>
-                  <a className="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400" href="#">
-                    {a.tags.map(t =>
-                      <span className="text-gray-400" key={t}>#{t}</span>
-                    )}
-                    <svg className="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="m9 18 6-6-6-6"></path>
-                    </svg>
-                  </a>
-                </div>
-                <div className="bg-gray-100 border-t rounded-b-xl py-3 px-4 md:py-4 md:px-5 dark:bg-neutral-900 dark:border-neutral-700">
-                  <p className="mt-1 text-sm text-gray-500 dark:text-neutral-500">
-                    {new Date(a.timestamp).toLocaleString()}
+                  <p className="mt-2 text-gray-500 dark:text-neutral-400">
+                    <span>{a.vote}</span>
+                    {
+                     a.owner_email === user?.email ?
+                        <button onClick={()=>handleUpvote(a.__id)} className='btn bg-[#1565C0] btn-md text-white  rounded-md ' disabled><BsTriangleFill className='text-lg text-white'></BsTriangleFill> Upvote </button> :
+                        <button onClick={()=>handleUpvote(a._id)} className='btn bg-[#1565C0] btn-md  rounded-md text-white ' disabled={isUpvote}><BsTriangleFill className='text-lg text-white'></BsTriangleFill> Upvote </button>
+
+                    }
                   </p>
                 </div>
-              </div> : ''
-            ) 
+                <a className="mt-3 inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400" href="#">
+                  {a.tags.map(t =>
+                    <span className="text-gray-400" key={t}>#{t}</span>
+                  )}
+                  <svg className="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="m9 18 6-6-6-6"></path>
+                  </svg>
+                </a>
+              </div>
+              <div className="bg-gray-100 border-t rounded-b-xl py-3 px-4 md:py-4 md:px-5 dark:bg-neutral-900 dark:border-neutral-700">
+                <p className="mt-1 text-sm text-gray-500 dark:text-neutral-500">
+                  {new Date(a.timestamp).toLocaleString()}
+                </p>
+              </div>
+            </div> : ''
+          )
         }
 
 

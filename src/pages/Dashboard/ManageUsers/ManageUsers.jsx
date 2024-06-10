@@ -39,10 +39,8 @@ const ManageUsers = () => {
     }
 
     return (
-        <div>
-           <div>
-
-            </div> 
+       
+        
 
             <div className="overflow-x-auto">
   <table className="table table-zebra w-full">
@@ -86,7 +84,7 @@ const ManageUsers = () => {
     </tbody>
   </table>
 </div>
-        </div>
+       
     );
 };
 

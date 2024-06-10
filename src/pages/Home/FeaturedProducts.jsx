@@ -45,7 +45,7 @@ const FeaturedProducts = ({ p, refetch }) => {
     }
 
     return (
-        <div className="grid grid-cols-1 mt-5 gap-5">
+        <div className="">
 
             <div className="bg-white border rounded-xl h-[300px] shadow-sm sm:flex dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
                 <div className="flex-shrink-0 relative w-full rounded-t-xl overflow-hidden pt-[40%] sm:rounded-s-xl sm:max-w-60 md:rounded-se-none md:max-w-xs">

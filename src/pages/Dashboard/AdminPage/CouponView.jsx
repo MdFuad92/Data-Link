@@ -11,12 +11,12 @@ const CouponView = () => {
 
     return (
         <div>
-            <div className ="flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+            <div className ="my-10 flex flex-col bg-white border shadow-sm rounded-xl p-4 md:p-5 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
                 <h3 className ="text-lg font-bold text-gray-800 dark:text-white">
                 {coupon_code}
                 </h3>
                 <p className ="mt-1 text-xs font-medium uppercase text-gray-500 dark:text-neutral-500">
-                    {amount}
+                    Amount: {amount}%
                 </p>
                 <p className ="mt-2 text-gray-500 dark:text-neutral-400">
                     {coupon_description}

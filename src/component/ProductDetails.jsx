@@ -121,7 +121,7 @@ const ProductDetails = () => {
                         </ul>
                     </div>
                     <span className='flex gap-3 items-center'>{vote} </span>
-                    <button onClick={handleUpvote} className='btn bg-[#ff5d59]  rounded-md ' disabled={isUpvote}><BsTriangleFill className='text-lg text-white'></BsTriangleFill> Upvote </button>
+                    <button onClick={handleUpvote} className='btn bg-[#1565C0]  rounded-md text-white ' disabled={isUpvote}><BsTriangleFill className='text-lg  text-white'></BsTriangleFill> Upvote </button>
 
                 </div>
 
@@ -192,7 +192,7 @@ const ProductDetails = () => {
 
                         </label>
                     </div>
-                    <button className='btn btn-error text-white my-4 '>Submit</button>
+                    <button className='btn bg-[#1565C0] text-white my-4 '>Submit</button>
                 </form>
 
                 

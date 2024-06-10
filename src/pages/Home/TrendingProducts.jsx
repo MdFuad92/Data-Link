@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 import useAxiosPublic from "../../Hook/useAxiosPublic";
 import { FaArrowAltCircleUp } from "react-icons/fa";
@@ -10,7 +10,7 @@ import { BsTriangleFill } from "react-icons/bs";
 const TrendingProducts = ({ t, refetch }) => {
 
 
-    const { name, vote, image, tags, timestamp, _id, owner_email } = t
+    const { name, vote, image, tags, timestamp, _id, owner_email,description } = t
     const axiosPublic = useAxiosPublic()
 
     const [votes, setVotes] = useState(vote)
@@ -43,11 +43,11 @@ const TrendingProducts = ({ t, refetch }) => {
 
     }
     return (
-        <div className="grid grid-cols-1 mt-5 gap-5">
+        <div >
 
-            <div className="bg-white border rounded-xl md:h-52 shadow-sm sm:flex dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+            <div className="bg-white border rounded-xl h-[300px] shadow-sm sm:flex dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
                 <div className="flex-shrink-0 relative w-full rounded-t-xl overflow-hidden pt-[40%] sm:rounded-s-xl sm:max-w-60 md:rounded-se-none md:max-w-xs">
-                    <img className="md:size-52 absolute top-0 start-0 object-cover" src={image} alt="Image Description" />
+                    <img className="size-60 p-10 absolute top-0  start-0 object-cover" src={image} alt="Image Description" />
                 </div>
                 <div className="flex flex-wrap">
                     <div className="p-4 flex flex-col h-full sm:p-7">
@@ -56,11 +56,13 @@ const TrendingProducts = ({ t, refetch }) => {
                                 <span className="text-gray-400" key={t}>#{t}</span>
                             )}
                         </span>
-                        <h3 className="text-lg font-bold text-gray-800 dark:text-white">
-                            {name}
-                        </h3>
+                        <Link to={`/productDetails/${_id}`}>
+                            <h3 className="text-lg hover:underline hover:cursor-pointer font-bold text-gray-800 dark:text-white">
+                                {name}
+                            </h3>
+                        </Link>
                         <p className="mt-1 text-gray-500 dark:text-neutral-400">
-                            Some quick example text to build on the card title and make up the bulk of the cards content.
+                            {description}
                         </p>
                         <div className="mt-5 sm:mt-auto flex justify-between">
                             <p className="text-xs text-gray-500 dark:text-neutral-500">

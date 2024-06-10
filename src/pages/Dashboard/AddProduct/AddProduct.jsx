@@ -13,7 +13,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const AddProduct = () => {
 
-
+    const [canAddProduct, setCanAddProduct] = useState(true);
     const { user } = useAuth()
     const [selected, setSelected] = useState(["tags"])
     const axiosPublic = useAxiosPublic()
@@ -47,8 +47,10 @@ const AddProduct = () => {
           description: data.description,
           tags: data.tags,
           link: data.link,
-          status: 'pending'
+          status: 'pending',
+          
         }
+        setCanAddProduct(true);
   
         const productsRes = await axiosSecure.post('/Products',productsItem)
         console.log( productsRes.data)

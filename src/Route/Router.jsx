@@ -27,6 +27,7 @@ import UpdateProducts from "../pages/Dashboard/UpdateProducts/UpdateProducts";
 import ProductReviewQueue from "../pages/Dashboard/ModeratorSection/ProductReviewQueue";
 import Admincoupon from "../pages/Dashboard/AdminPage/Admincoupon";
 import CouponView from "../pages/Dashboard/AdminPage/CouponView";
+import EditCoupons from "../pages/Dashboard/ManageCoupons/EditCoupons";
 
 
 const router = createBrowserRouter([
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
            {
             path:'/productDetails/:id',
             element:<PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
-            loader:({params})=>fetch(`http://localhost:5000/Products/${params.id}`)
+            loader:({params})=>fetch(`https://assignment-twelve-server-omega.vercel.app/Products/${params.id}`)
 
            }
         ]
@@ -80,7 +81,7 @@ const router = createBrowserRouter([
             {
                 path:'updateProducts/:id',
                 element:<UpdateProducts></UpdateProducts>,
-                loader:({params})=>fetch(`http://localhost:5000/userproduct/${params.id}`)
+                loader:({params})=>fetch(`https://assignment-twelve-server-omega.vercel.app/userproduct/${params.id}`)
             },
 
             // moderator routes
@@ -117,8 +118,13 @@ const router = createBrowserRouter([
             {
                 path:'couponView/:id',
                 element:<PrivateRoute><AdminRoute><CouponView></CouponView></AdminRoute></PrivateRoute>,
-                loader:({params}) => fetch(`http://localhost:5000/coupon/${params.id}`)
+                loader:({params}) => fetch(`https://assignment-twelve-server-omega.vercel.app/coupon/${params.id}`)
   
+            },
+            {
+                path:'editCoupons/:id',
+                element:<PrivateRoute><AdminRoute><EditCoupons></EditCoupons></AdminRoute></PrivateRoute>,
+                loader:({params}) => fetch(`https://assignment-twelve-server-omega.vercel.app/coupon/${params.id}`)
             }
         ]
     }

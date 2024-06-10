@@ -19,6 +19,7 @@
     "@headlessui/react": "^2.0.4",
     "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
+    "@nextui-org/dropdown": "^2.1.25",
     "@smastrom/react-rating": "^1.5.0",
     "@stripe/react-stripe-js": "^2.7.1",
     "@stripe/stripe-js": "^3.5.0",

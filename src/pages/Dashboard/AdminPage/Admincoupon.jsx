@@ -27,7 +27,7 @@ const Admincoupon = () => {
         const couponRes = await axiosSecure.post('/coupon', couponsItem)
         console.log(couponRes.data)
         if (couponRes.data.insertedId) {
-            toast.success('Product posted successfully')
+            toast.success('Coupon posted successfully')
 
         }
 

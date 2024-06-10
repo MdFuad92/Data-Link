@@ -14,12 +14,13 @@ import { useQuery } from "@tanstack/react-query";
 
 const CheckoutForm = ({ closeModal, isOpen, refetch }) => {
 
-  
-  const [coupon, setCoupon] = useState('lemon')
-  const [discount, setDiscount] = useState(10)
-  const [total, setTotal] = useState(60)
-  const [lastDiscount, setlastDiscount] = useState(0) 
-  console.log(lastDiscount)
+
+  const [coupon, setCoupon] = useState('');
+  const [discountPercentage, setDiscountPercentage] = useState(0);
+  const [amount, setAmount] = useState(60); 
+  const [discountedAmount, setDiscountedAmount] = useState(60);// Fixed amount in dollars
+
+
   const stripe = useStripe();
   const elements = useElements();
   const [transactionId, setTransactionId] = useState('')
@@ -28,44 +29,31 @@ const CheckoutForm = ({ closeModal, isOpen, refetch }) => {
   const [clientSecret, setClientSecret] = useState('')
   const { user } = useAuth()
   const navigate = useNavigate()
+
  
-  const {data:couponAdd = {}}  = useQuery({
-    queryKey:['couponAdd'],
-    queryFn:async()=>{
-      const res = await axiosSecure.get('/coupon')
-      return res.data
-    }
 
-  })
-
-  console.log(couponAdd)
+ 
 
 
-  useEffect(() => {
+    useEffect(() => {
 
-    axiosSecure.post('/create-payment-intent', { price: lastDiscount })
-      .then((res) => {
-        console.log(res.data.clientSecret)
-        setClientSecret(res.data.clientSecret)
-        
-      })
+      axiosSecure.post('/create-payment-intent', { price: amount,coupon_code: coupon })
+        .then((res) => {
+          console.log(res.data.clientSecret)
+          const {clientSecret, discountPercentage, discountedAmount } = res.data;
+          setClientSecret(clientSecret);
+          setDiscountPercentage(discountPercentage);
+          setDiscountedAmount(discountedAmount);
 
-  }, [axiosSecure])
+        })
+
+    }, [axiosSecure,coupon, amount])
 
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const couponManage = e.target.coupon.value
-    if (couponManage === coupon) {
-      const discountAmount = (total * discount) / 100
-      const finalDiscount = total - discountAmount
-     
-      setlastDiscount(finalDiscount)
-    
 
-      return toast.success('coupon added successfully')
-    }
 
     if (!stripe || !elements) {
       return;
@@ -113,7 +101,8 @@ const CheckoutForm = ({ closeModal, isOpen, refetch }) => {
         //  payment saving in database
         const payment = {
           email: user?.email,
-          price: 60,
+          
+          price: discountedAmount,
           transactionId: paymentIntent.id,
           status: 'verified'
 
@@ -143,7 +132,10 @@ const CheckoutForm = ({ closeModal, isOpen, refetch }) => {
 
 
       <form onSubmit={handleSubmit} >
-        <input type="text" name="coupon" placeholder="discount" className="input input-bordered my-3" />
+        <input type="text" placeholder="Coupon Code"
+          value={coupon}
+          onChange={(e) => setCoupon(e.target.value)} className="input input-bordered my-3" />
+     
         <CardElement
           options={{
             style: {
@@ -165,6 +157,7 @@ const CheckoutForm = ({ closeModal, isOpen, refetch }) => {
           Pay
         </button>
         <p className="text-xl text-red-600">{error}</p>
+        <h2>Total: ${discountedAmount.toFixed(2)}</h2> {/* Display discounted amount in dollars */}
         {transactionId && <p className="text-green-600">Your Transaction Id: {transactionId}</p>}
 
       </form>
