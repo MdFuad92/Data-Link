@@ -67,9 +67,17 @@ const CouponCarousel = () => {
                           USE: {c.coupon_code}
                         </div>
                         <div className="text" data-swiper-parallax="-100">
-                            <p>
-                          {c.coupon_description}
-                            </p>
+                            <div>
+                                <p>
+                                {c.coupon_description}
+                                </p>
+                                <p>
+                                Expiry-Date: {c.expiry_date}
+                                </p>
+                                <p>
+                               Discount: {c.amount}%
+                                </p>
+                            </div>
                         </div>
                     </SwiperSlide>
           

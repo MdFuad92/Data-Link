@@ -26,6 +26,7 @@ import ReportedProducts from "../pages/Dashboard/ModeratorSection/ReportedProduc
 import UpdateProducts from "../pages/Dashboard/UpdateProducts/UpdateProducts";
 import ProductReviewQueue from "../pages/Dashboard/ModeratorSection/ProductReviewQueue";
 import Admincoupon from "../pages/Dashboard/AdminPage/Admincoupon";
+import CouponView from "../pages/Dashboard/AdminPage/CouponView";
 
 
 const router = createBrowserRouter([
@@ -105,12 +106,19 @@ const router = createBrowserRouter([
             },
             {
                 path:'manageCoupons',
-                element:<PrivateRoute><AdminRoute><ManageCoupons></ManageCoupons></AdminRoute></PrivateRoute>
-
+                element:<PrivateRoute><AdminRoute><ManageCoupons></ManageCoupons></AdminRoute></PrivateRoute>,
             },
+             
             {
                 path:'addCoupon',
                 element:<PrivateRoute><AdminRoute><Admincoupon></Admincoupon></AdminRoute></PrivateRoute>
+            },
+            
+            {
+                path:'couponView/:id',
+                element:<PrivateRoute><AdminRoute><CouponView></CouponView></AdminRoute></PrivateRoute>,
+                loader:({params}) => fetch(`http://localhost:5000/coupon/${params.id}`)
+  
             }
         ]
     }

@@ -48,7 +48,7 @@ const Register = () => {
       
          )
           .catch()
-          navigate('/')
+          navigate('/login')
           toast.success('Registration Successful')
       
          })
