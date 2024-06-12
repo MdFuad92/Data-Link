@@ -1,8 +1,16 @@
-# React + Vite
+# Data-link
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live link: https://assignment-twelve-a6219.web.app/
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Resources:
+- Preline-UI: https://www.framer.com/motion/
+- MongoDB for database : https://www.mongodb.com/
+- React-Lottie : https://www.npmjs.com/package/lottie-react
+- Tailwind-css: https://tailwindcss.com/docs/installation/framework-guides
+- Daisy-ui: https://daisyui.com/
+- Swiper: https://swiperjs.com/demos#pagination-dynamic
+- Firebase: https://firebase.google.com/?gad_source=1&gclid=CjwKCAjw5v2wBhBrEiwAXDDoJWEX07f6laMpbyAa4PTr5cN4cGq765mVoFbOsHYCjb_sDl4MKhhOMxoCjiQQAvD_BwE&gclsrc=aw.ds
+- React-icon: https://www.npmjs.com/package/react-icons
+- Sweet-Alert: https://sweetalert2.github.io/#examples
+- React hot-Toast : https://react-hot-toast.com/
+- Json Web-Token: https://jwt.io/
