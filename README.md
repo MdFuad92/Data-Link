@@ -4,13 +4,13 @@ Project-Overview: Full-Stack Project with Admin, Moderator & User dashboard syst
 
 Live link: https://assignment-twelve-a6219.web.app/
 
-- **Features**:
+ **Features**:
 - Integrated Upvote Feature where users can upvote a post with authentication.
 - Implemented Pagination for all accepted products lineup.
 - Applied Admin, Moderator & User dashboard & JWT token for secure authentication.
 - Used search filter and stripe payment gateway through backend to make payment system
 
-- **Resources**:
+  **Resources**:
 - Preline-UI: https://www.framer.com/motion/
 - MongoDB for database : https://www.mongodb.com/
 - React-Lottie : https://www.npmjs.com/package/lottie-react
