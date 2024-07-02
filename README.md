@@ -28,4 +28,5 @@ Live link: https://assignment-twelve-a6219.web.app/
 1. **Clone the repository:**
 
    ```sh
-   git clone https://github.com/yourusername/anime-explorer-app.git
+   git clone https://github.com/yourusername/Data-Link.git
+
