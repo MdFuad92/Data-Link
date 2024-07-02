@@ -22,3 +22,10 @@ Live link: https://assignment-twelve-a6219.web.app/
 - Sweet-Alert: https://sweetalert2.github.io/#examples
 - React hot-Toast : https://react-hot-toast.com/
 - Json Web-Token: https://jwt.io/
+
+- ### Installation
+
+1. **Clone the repository:**
+
+   ```sh
+   git clone https://github.com/yourusername/anime-explorer-app.git
