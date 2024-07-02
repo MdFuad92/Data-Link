@@ -1,8 +1,16 @@
 # Data-link
 
+Project-Overview: Full-Stack Project with Admin, Moderator & User dashboard system & also tried jwt token to make authentication more secure. The Purpose of this project is where users can post about their own app or website, there it will get featured and promoted. Users can upvote a product similar to 𝐩𝐫𝐨𝐝𝐮𝐜𝐭-𝐡𝐮𝐧𝐭.𝐜𝐨𝐦 
+
 Live link: https://assignment-twelve-a6219.web.app/
 
-- Resources:
+- **Features**:
+- Integrated Upvote Feature where users can upvote a post with authentication.
+- Implemented Pagination for all accepted products lineup.
+- Applied Admin, Moderator & User dashboard & JWT token for secure authentication.
+- Used search filter and stripe payment gateway through backend to make payment system
+
+- **Resources**:
 - Preline-UI: https://www.framer.com/motion/
 - MongoDB for database : https://www.mongodb.com/
 - React-Lottie : https://www.npmjs.com/package/lottie-react
