@@ -28,12 +28,14 @@ import ProductReviewQueue from "../pages/Dashboard/ModeratorSection/ProductRevie
 import Admincoupon from "../pages/Dashboard/AdminPage/Admincoupon";
 import CouponView from "../pages/Dashboard/AdminPage/CouponView";
 import EditCoupons from "../pages/Dashboard/ManageCoupons/EditCoupons";
+import Error from "../layout/Error";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root></Root>,
+        errorElement:<Error></Error>,
         children: [
            {
             path:'/',

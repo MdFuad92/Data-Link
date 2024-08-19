@@ -53,7 +53,7 @@ const Login = () => {
              axiosPublic.post('/users',userInfo)
              .then(res =>{
                 console.log(res.data)
-                navigate(loc?.state?loc.state:'/' )
+                navigate(from,{replace:true}) 
              })
          
              toast.success('login successful')

@@ -52,7 +52,7 @@ const TrendingProducts = ({ t, refetch }) => {
                 <div className="flex flex-wrap">
                     <div className="p-4 flex flex-col h-full sm:p-7">
                         <span className="space-x-7 mb-3">
-                            {tags.map(t =>
+                            {tags?.map(t =>
                                 <span className="text-gray-400" key={t}>#{t}</span>
                             )}
                         </span>

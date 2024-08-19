@@ -71,17 +71,10 @@ const ProductReviewQueue = () => {
 
 
     return (
-        <div>
-            {/* sort */}
+    
+           
 
-            <select className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-
-                <option value='' >Status</option>
-                <option value='pending' >Pending</option>
-                <option value='accepted'>Accepted</option>
-                <option value='rejected'>Rejected</option>
-
-            </select>
+          
 
 
             <div className="overflow-x-auto">
@@ -140,7 +133,7 @@ const ProductReviewQueue = () => {
                     </tbody>
                 </table>
             </div>
-        </div>
+      
     );
 };
 
